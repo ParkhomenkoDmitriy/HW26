@@ -20,8 +20,10 @@ class Calculator:
     def divide(self, x, y):
         try:
             if y == 0:
-                return "Ошибка: Деление на 0 невозможно"
+                raise ZeroDivisionError("Деление на 0 невозможно")
             return x / y
+        except ZeroDivisionError as e:
+            return f"Ошибка: {e}"
         except Exception as e:
             return f"Ошибка: {e}"
 
@@ -59,6 +61,7 @@ while True:
         print("Деление:", calc.divide(x, y))
         print("Возведение в степень:", calc.power(x, power))
         print("Извлечение корня x:", calc.square_root(x, root_power))
+
         break
 
     except ValueError as e:
