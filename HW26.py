@@ -22,8 +22,8 @@ class Calculator:
             if y == 0:
                 return "Ошибка: Деление на 0 невозможно"
             return x / y
-        except ZeroDivisionError:
-            return "Ошибка: Деление на 0 невозможно"
+        except Exception as e:
+            return f"Ошибка: {e}"
 
     def power(self, x, y=2):
         try:
@@ -44,17 +44,22 @@ class Calculator:
 
 calc = Calculator()
 
-x = float(input("Введите значение x: "))
-y = float(input("Введите значение y: "))
-power = input("Введите значение степени (по умолчанию 2): ")
-power = float(power) if power else 2
-root_power = input("Введите значение корня степени (по умолчанию 2): ")
-root_power = float(root_power) if root_power else 2
+while True:
+    try:
+        x = float(input("Введите значение x: "))
+        y = float(input("Введите значение y: "))
+        power = input("Введите значение степени (по умолчанию 2): ")
+        power = float(power) if power else 2
+        root_power = input("Введите значение корня степени (по умолчанию 2): ")
+        root_power = float(root_power) if root_power else 2
 
-# Вывод результатов
-print("Сложение:", calc.add(x, y))
-print("Вычитание:", calc.subtract(x, y))
-print("Умножение:", calc.multiply(x, y))
-print("Деление:", calc.divide(x, y))
-print("Возведение в степень:", calc.power(x, power))
-print("Извлечение корня x:", calc.square_root(x, root_power))
+        print("Сложение:", calc.add(x, y))
+        print("Вычитание:", calc.subtract(x, y))
+        print("Умножение:", calc.multiply(x, y))
+        print("Деление:", calc.divide(x, y))
+        print("Возведение в степень:", calc.power(x, power))
+        print("Извлечение корня x:", calc.square_root(x, root_power))
+        break
+
+    except ValueError as e:
+        print("Ошибка ввода данных. Пожалуйста, введите числовые значения.")
