@@ -46,23 +46,44 @@ class Calculator:
 
 calc = Calculator()
 
-while True:
+print("Выберите операцию:")
+print("1. Сложение")
+print("2. Вычитание")
+print("3. Умножение")
+print("4. Деление")
+print("5. Возведение в степень")
+print("6. Извлечение корня")
+
+choice = input("Введите номер операции: ")
+
+if choice in ["1", "2", "3", "4"]:
     try:
         x = float(input("Введите значение x: "))
         y = float(input("Введите значение y: "))
-        power = input("Введите значение степени (по умолчанию 2): ")
-        power = float(power) if power else 2
-        root_power = input("Введите значение корня степени (по умолчанию 2): ")
-        root_power = float(root_power) if root_power else 2
-
-        print("Сложение:", calc.add(x, y))
-        print("Вычитание:", calc.subtract(x, y))
-        print("Умножение:", calc.multiply(x, y))
-        print("Деление:", calc.divide(x, y))
+    except ValueError as e:
+        print("Ошибка ввода данных. Пожалуйста, вводите числовые значения.")
+    else:
+        if choice == "1":
+            print("Сложение:", calc.add(x, y))
+        elif choice == "2":
+            print("Вычитание:", calc.subtract(x, y))
+        elif choice == "3":
+            print("Умножение:", calc.multiply(x, y))
+        elif choice == "4":
+            print("Деление:", calc.divide(x, y))
+elif choice == "5":
+    try:
+        x = float(input("Введите значение x: "))
+        power = float(input("Введите значение степени (по умолчанию 2): "))
         print("Возведение в степень:", calc.power(x, power))
-        print("Извлечение корня x:", calc.square_root(x, root_power))
-
-        break
-
     except ValueError as e:
         print("Ошибка ввода данных. Пожалуйста, введите числовые значения.")
+elif choice == "6":
+    try:
+        x = float(input("Введите значение x: "))
+        root_power = float(input("Введите значение корня степени (по умолчанию 2): "))
+        print("Извлечение корня x:", calc.square_root(x, root_power))
+    except ValueError as e:
+        print("Ошибка ввода данных. Пожалуйста, введите числовые значения.")
+else:
+    print("Некорректный выбор операции. Пожалуйста, выберите снова.")
